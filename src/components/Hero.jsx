@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BookingCard from './BookingCard';
 
 const titles = [
@@ -20,11 +21,11 @@ const Hero = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    let typingSpeed = isDeleting ? 30 : 70; // Slightly faster typing for smoothness
+    let typingSpeed = isDeleting ? 30 : 70;
     const currentTitle = titles[titleIndex];
 
     if (!isDeleting && displayText === currentTitle) {
-      const timeout = setTimeout(() => setIsDeleting(true), 2500); // Pause at end of sentence
+      const timeout = setTimeout(() => setIsDeleting(true), 2500);
       return () => clearTimeout(timeout);
     }
 
@@ -42,22 +43,54 @@ const Hero = () => {
   }, [displayText, isDeleting, titleIndex]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      // 1. Text entrance animation
       gsap.fromTo(leftTextRef.current, 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
+        { y: 100, opacity: 0 }, 
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 1.2, 
+          ease: 'power3.out', 
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 80%',
+            toggleActions: 'play reverse play reverse',
+          }
+        }
       );
 
       gsap.fromTo(rightContentRef.current, 
-        { x: 50, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.4 }
+        { x: 100, opacity: 0 }, 
+        { 
+          x: 0, 
+          opacity: 1, 
+          duration: 1.2, 
+          ease: 'power3.out', 
+          delay: 0.4,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 80%',
+            toggleActions: 'play reverse play reverse',
+          }
+        }
       );
 
-      // 2. Card slide up animation
       gsap.fromTo(cardRef.current,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: 'back.out(1.2)', delay: 0.6 }
+        { y: 200, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 1.5, 
+          ease: 'back.out(1)', 
+          delay: 0.6,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 80%',
+            toggleActions: 'play reverse play reverse',
+          }
+        }
       );
     }, heroRef);
 
@@ -67,7 +100,7 @@ const Hero = () => {
   return (
     <section ref={heroRef} className="relative w-full flex flex-col">
       {/* Top White Section */}
-      <div className="w-full bg-white pt-8 md:pt-20 pb-65  px-4 sm:px-6 lg:px-8 z-0">
+      <div className="w-full bg-white pt-8 md:pt-20 pb-65 px-4 sm:px-6 lg:px-8 z-0">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
           
           {/* Left Hero Text */}
@@ -92,14 +125,11 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom Blue Section with Overlapping Card */}
-      <div className="w-full bg-garibook-blue relative z-10 pt-10 pb-20">
-        <div ref={cardRef} className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-55">
+      {/* Blue overlap zone for Booking Card */}
+      <div className="w-full bg-[#1252FF] relative z-10 pt-10 pb-10">
+        <div ref={cardRef} className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-55 relative z-20">
           <BookingCard />
         </div>
-        
-        {/* Decorative elements or bottom spacer if needed */}
-        <div className="h-32 md:h-64"></div>
       </div>
     </section>
   );

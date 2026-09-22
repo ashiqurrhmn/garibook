@@ -14,7 +14,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className="max-w-[1440px] mx-auto pt-4 md:pt-6 lg:pt-12 pb-4 px-4 sm:px-6 lg:px-8">
+      <nav className="max-w-[1440px] mx-auto pt-4 md:pt-6 lg:pt-12 pb-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">

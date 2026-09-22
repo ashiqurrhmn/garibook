@@ -7,3 +7,12 @@
   --color-garibook-blue: #0D52ED;
   --color-garibook-yellow: #FACC15;
 }
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 40s linear infinite;
+}
