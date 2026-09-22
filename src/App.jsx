@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import BlueSection from './components/BlueSection'
+import OurServices from './components/OurServices'
 import { MdChatBubble } from 'react-icons/md'
 
 const DraggableChat = () => {
@@ -51,10 +52,11 @@ const DraggableChat = () => {
 
 function App() {
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-garibook-blue selection:text-white relative">
+    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-garibook-blue selection:text-white relative overflow-x-hidden">
       <Navbar />
       <Hero />
       <BlueSection />
+      <OurServices />
       <DraggableChat />
     </div>
   )
