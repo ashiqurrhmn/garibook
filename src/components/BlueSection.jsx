@@ -416,14 +416,6 @@ const BlueSection = () => {
         className="absolute bottom-0 left-4 md:left-10 lg:left-20 w-[100px] md:w-[120px] lg:w-[180px] z-20 object-contain drop-shadow-2xl"
       />
 
-      {/* Scroll Up Arrow */}
-      <button 
-        onClick={handleScrollUp}
-        className="absolute bottom-8 right-4 md:right-8 lg:right-12 text-white hover:text-gray-300 hover:-translate-y-1 transition-all z-20 cursor-pointer"
-        aria-label="Scroll to top"
-      >
-        <FiArrowUp size={28} />
-      </button>
     </section>
   );
 };

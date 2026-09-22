@@ -127,7 +127,7 @@ const Hero = () => {
 
       {/* Blue overlap zone for Booking Card */}
       <div className="w-full bg-[#1252FF] relative z-10 pt-10 pb-10">
-        <div ref={cardRef} className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-55 relative z-20">
+        <div ref={cardRef} id="booking-card" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-55 relative z-20">
           <BookingCard />
         </div>
       </div>

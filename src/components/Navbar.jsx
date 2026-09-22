@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaLanguage } from 'react-icons/fa6';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="w-full relative bg-white">
-      {/* Top right language button */}
-      <div className="hidden lg:flex absolute top-0 right-0 p-2 md:p-4">
-        <button className="bg-garibook-blue text-white text-[14px] font-medium px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors">
-          <FaLanguage size={22} className="opacity-90" /> English
-        </button>
-      </div>
+    <>
+      <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
+        {/* Top right language button */}
+        <div className={`hidden lg:flex absolute top-0 right-0 p-2 md:p-4 transition-opacity duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <button className="bg-garibook-blue text-white text-[14px] font-medium px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors">
+            <FaLanguage size={22} className="opacity-90" /> English
+          </button>
+        </div>
 
-      {/* Main Navbar */}
-      <nav className="max-w-[1440px] mx-auto pt-4 md:pt-6 lg:pt-12 pb-4">
-        <div className="flex justify-between items-center h-16">
+        {/* Main Navbar */}
+        <nav className={`max-w-[1440px] mx-auto transition-all duration-300 px-4 sm:px-6 lg:px-12 ${isScrolled ? 'py-1' : 'pt-4 md:pt-6 lg:pt-12 pb-4'}`}>
+          <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             <img src="/Assets/logo.png" alt="Garibook Logo" className="h-14 md:h-14 lg:h-14 w-auto object-contain" />
@@ -105,6 +115,9 @@ const Navbar = () => {
         </div>
       </div>
     </header>
+    {/* Spacer to prevent layout shift because the header is 'fixed' */}
+    <div className="w-full h-[96px] md:h-[104px] lg:h-[128px] invisible pointer-events-none"></div>
+    </>
   );
 };
 

@@ -60,7 +60,7 @@ const OurServices = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-20 lg:py-32 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-white pt-8 pb-20 lg:pt-12 lg:pb-32 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <h2 className="gsap-fade-up text-[#1F1F1F] text-[32px] md:text-[42px] lg:text-[48px] font-bold mb-8">
