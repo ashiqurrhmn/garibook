@@ -7,24 +7,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Destinations = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(
-        ".gsap-dest-up",
+        headerRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Cards Animation
+      gsap.fromTo(
+        gsap.utils.toArray(".gsap-dest-card"),
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.15,
+          stagger: 0.25,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 25%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -62,7 +81,7 @@ const Destinations = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         {/* Header Section */}
-        <div className="gsap-dest-up flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 md:mb-12 gap-2">
+        <div ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 md:mb-12 gap-2">
           <div className="max-w-[900px]">
             <h2 className="text-[#222222] text-[32px] md:text-[40px] lg:text-[44px] font-bold tracking-tight leading-[1.1] mb-3">
               Beyond Destinations
@@ -87,7 +106,7 @@ const Destinations = () => {
           {destinations.map((dest) => (
             <div
               key={dest.id}
-              className="gsap-dest-up flex flex-col group cursor-pointer"
+              className="gsap-dest-card flex flex-col group cursor-pointer"
             >
               {/* Image */}
               <div className="w-full aspect-[16/10] md:aspect-[3/2] rounded-[16px] overflow-hidden mb-5 bg-gray-100">

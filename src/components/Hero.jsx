@@ -47,55 +47,55 @@ const Hero = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
+      // Left Text Animation
       gsap.fromTo(
         leftTextRef.current,
-        { y: 100, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
+          duration: 2,
           ease: "power3.out",
-          delay: 0.2,
           scrollTrigger: {
             trigger: heroRef.current,
-            start: "top 80%",
+            start: "top 40%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
 
+      // Right Content Animation
       gsap.fromTo(
         rightContentRef.current,
-        { x: 100, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: 0.4,
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        },
-      );
-
-      gsap.fromTo(
-        cardRef.current,
-        { y: 200, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.5,
-          ease: "back.out(1)",
-          delay: 0.6,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: heroRef.current,
-            start: "top 80%",
+            start: "top 20%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
+      );
+
+      // Card Animation
+      gsap.fromTo(
+        cardRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
       );
     }, heroRef);
 

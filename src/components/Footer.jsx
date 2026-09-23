@@ -1,13 +1,79 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+  const sectionRef = useRef(null);
+  const topLinksRef = useRef(null);
+  const middleSectionRef = useRef(null);
+  const bottomSectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Top Links Animation
+      gsap.fromTo(
+        topLinksRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Middle Section Animation
+      gsap.fromTo(
+        middleSectionRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Bottom Section Animation
+      gsap.fromTo(
+        bottomSectionRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 10%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer className="w-full bg-black text-white pt-16 font-sans">
+    <footer ref={sectionRef} className="w-full bg-black text-white pt-16 font-sans">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0">
         
         {/* Top Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+        <div ref={topLinksRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           
           {/* Column 1 */}
           <div>
@@ -55,7 +121,7 @@ const Footer = () => {
         </div>
 
         {/* Middle Section: Download & Partners */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 lg:gap-8 mb-16 lg:mb-20">
+        <div ref={middleSectionRef} className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 lg:gap-8 mb-16 lg:mb-20">
           
           {/* Download App */}
           <div>
@@ -107,7 +173,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section: Legal & Copyright */}
-        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 pb-8 pt-6 border-t border-gray-800/90">
+        <div ref={bottomSectionRef} className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 pb-8 pt-6 border-t border-gray-800/90">
           
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
             <img src="/Assets/footer/Garibook_Logo.svg" alt="Garibook" className="h-8 md:h-10 object-contain" />

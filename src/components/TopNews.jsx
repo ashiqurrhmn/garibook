@@ -8,24 +8,43 @@ gsap.registerPlugin(ScrollTrigger);
 const TopNews = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(
-        ".gsap-news-up",
+        headerRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // News Cards Animation
+      gsap.fromTo(
+        gsap.utils.toArray(".gsap-news-card"),
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.15,
+          stagger: 0.25,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 25%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -94,7 +113,7 @@ const TopNews = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         {/* Header Section */}
-        <div className="gsap-news-up flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 md:mb-12">
+        <div ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 md:mb-12">
           <h2 className="text-[#222222] text-[32px] md:text-[40px] lg:text-[48px] font-bold tracking-tight leading-[1.1] mb-6 lg:mb-0">
             We Featured by Top news
             <br className="hidden lg:block" /> Platforms
@@ -103,14 +122,14 @@ const TopNews = () => {
           <div className="flex gap-4">
             <button
               onClick={scrollLeft}
-              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center text-black bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 active:scale-90 shadow-sm"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center text-black bg-white hover:bg-black hover:text-white hover:border-black transition-colors duration-300 active:scale-90 shadow-sm"
               aria-label="Previous News"
             >
               <FiArrowLeft size={24} strokeWidth={2.5} />
             </button>
             <button
               onClick={scrollRight}
-              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center text-black bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 active:scale-90 shadow-sm"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center text-black bg-white hover:bg-black hover:text-white hover:border-black transition-colors duration-300 active:scale-90 shadow-sm"
               aria-label="Next News"
             >
               <FiArrowRight size={24} strokeWidth={2.5} />
@@ -127,7 +146,7 @@ const TopNews = () => {
           {newsItems.map((news) => (
             <div
               key={news.id}
-              className="gsap-news-up flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-21px)] snap-start flex flex-col"
+              className="gsap-news-card flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-21px)] snap-start flex flex-col"
             >
               {/* Image */}
               <div className="w-full aspect-[16/10] md:aspect-[3/2] rounded-[16px] overflow-hidden mb-5 bg-gray-100">

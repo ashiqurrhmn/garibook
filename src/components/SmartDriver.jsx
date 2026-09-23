@@ -7,24 +7,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SmartDriver = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const bannerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(
-        ".gsap-smart-up",
+        headerRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Banner Animation
+      gsap.fromTo(
+        bannerRef.current,
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.15,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 25%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -37,14 +56,14 @@ const SmartDriver = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         {/* Header Section */}
-        <div className="gsap-smart-up mb-8 md:mb-10">
+        <div ref={headerRef} className="mb-8 md:mb-10">
           <h2 className="text-[#222222] text-[32px] md:text-[40px] lg:text-[44px] font-bold tracking-tight">
             Be a Smart Driver
           </h2>
         </div>
 
         {/* Banner Section */}
-        <div className="gsap-smart-up relative w-full bg-[#EFC30C] rounded-[24px] overflow-hidden flex flex-col md:flex-row justify-between min-h-[550px] sm:min-h-[600px] md:min-h-[500px] lg:min-h-[450px] xl:min-h-[500px]">
+        <div ref={bannerRef} className="relative w-full bg-[#EFC30C] rounded-[24px] overflow-hidden flex flex-col md:flex-row justify-between min-h-[550px] sm:min-h-[600px] md:min-h-[500px] lg:min-h-[450px] xl:min-h-[500px]">
           {/* Left Content */}
           <div className="w-full md:w-[60%] lg:w-[50%] p-8 pt-10 md:p-12 lg:p-16 xl:pl-20 z-10 flex flex-col items-start text-left">
             <h3 className="text-[#1252FF] text-[36px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-extrabold leading-[1.1] tracking-tight mb-8 md:mb-6 lg:mb-12">

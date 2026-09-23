@@ -7,11 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const DownloadApp = () => {
   const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  const leftContentRef = useRef(null);
+  const rightImageRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Full Container Animation
       gsap.fromTo(
-        ".gsap-download-up",
+        containerRef.current,
         { y: 50, opacity: 0 },
         {
           y: 0,
@@ -20,10 +24,44 @@ const DownloadApp = () => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 40%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
+      );
+
+      // Left Content Animation
+      gsap.fromTo(
+        leftContentRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 38%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Right Image Animation
+      gsap.fromTo(
+        rightImageRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 35%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -35,9 +73,9 @@ const DownloadApp = () => {
       className="w-full bg-white py-10 md:py-12 overflow-visible"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0">
-        <div className="gsap-download-up relative w-full bg-[#1252FF] rounded-[24px] flex flex-col md:flex-row items-center md:items-stretch justify-between px-6 sm:px-8 md:px-12 lg:px-24 pt-10 sm:pt-12 md:pt-12 pb-0 min-h-[400px] lg:min-h-[450px] overflow-hidden lg:overflow-visible">
+        <div ref={containerRef} className="relative w-full bg-[#1252FF] rounded-[24px] flex flex-col md:flex-row items-center md:items-stretch justify-between px-6 sm:px-8 md:px-12 lg:px-24 pt-10 sm:pt-12 md:pt-12 pb-0 min-h-[400px] lg:min-h-[450px] overflow-hidden lg:overflow-visible">
           {/* Left Content */}
-          <div className="w-full md:w-[55%] lg:w-1/2 flex flex-col justify-center z-10 text-left pb-12 md:pb-16 lg:pb-20">
+          <div ref={leftContentRef} className="w-full md:w-[55%] lg:w-1/2 flex flex-col justify-center z-10 text-left pb-12 md:pb-16 lg:pb-20">
             <h2 className="text-white text-[32px] sm:text-[36px] md:text-[38px] lg:text-[48px] font-bold leading-[1.1] mb-4 mt-0 md:mt-0 lg:mt-0">
               Download
               <br />
@@ -57,7 +95,7 @@ const DownloadApp = () => {
           </div>
 
           {/* Right Image */}
-          <div className="w-full md:w-[45%] lg:w-1/2 relative flex justify-center mt-12 md:mt-0 h-[300px] sm:h-[350px] md:h-auto z-10">
+          <div ref={rightImageRef} className="w-full md:w-[45%] lg:w-1/2 relative flex justify-center mt-12 md:mt-0 h-[300px] sm:h-[350px] md:h-auto z-10">
             <img
               src="/Assets/phone.png"
               alt="Garibook App on Phone"

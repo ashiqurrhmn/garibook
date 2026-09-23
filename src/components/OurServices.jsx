@@ -35,25 +35,82 @@ const OurServices = () => {
   const [activeTab, setActiveTab] = useState("Rides");
   const [activeCard, setActiveCard] = useState("intercity");
   const [hoveredCard, setHoveredCard] = useState(null);
+  
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const tabsRef = useRef(null);
+  const subHeaderRef = useRef(null);
+  const cardsRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation (slide up)
       gsap.fromTo(
-        ".gsap-fade-up",
-        { y: 100, opacity: 0 },
+        headerRef.current,
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 2,
-          stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 40%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
+      );
+
+      // Tabs Animation (slide up)
+      gsap.fromTo(
+        tabsRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 30%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Sub Header Animation (slide up)
+      gsap.fromTo(
+        subHeaderRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Cards Animation (stagger slide up)
+      gsap.fromTo(
+        gsap.utils.toArray(".gsap-service-card"),
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.25,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 10%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -66,12 +123,12 @@ const OurServices = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0">
         {/* Header */}
-        <h2 className="gsap-fade-up text-[#1F1F1F] text-[32px] md:text-[42px] lg:text-[48px] font-bold mb-8">
+        <h2 ref={headerRef} className="text-[#1F1F1F] text-[32px] md:text-[42px] lg:text-[48px] font-bold mb-8">
           Our Services
         </h2>
 
         {/* Tabs */}
-        <div className="gsap-fade-up flex gap-3 md:gap-4 mb-16 overflow-x-auto pb-4 scrollbar-hide">
+        <div ref={tabsRef} className="flex gap-3 md:gap-4 mb-16 overflow-x-auto pb-4 scrollbar-hide">
           {["Rides", "Garibook Business", "Garibook Club", "VMS"].map((tab) => (
             <button
               key={tab}
@@ -88,7 +145,7 @@ const OurServices = () => {
         </div>
 
         {/* Sub Header */}
-        <h3 className="gsap-fade-up text-[#1F1F1F] text-[32px] md:text-[42px] lg:text-[48px] font-bold mb-12 leading-[1.2]">
+        <h3 ref={subHeaderRef} className="text-[#1F1F1F] text-[32px] md:text-[42px] lg:text-[48px] font-bold mb-12 leading-[1.2]">
           Every Ride
           <br />
           One Platform
@@ -96,7 +153,8 @@ const OurServices = () => {
 
         {/* Cards Grid */}
         <div
-          className="gsap-fade-up grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           onMouseLeave={() => setHoveredCard(null)}
         >
           {services.map((svc) => {
@@ -106,7 +164,7 @@ const OurServices = () => {
                 key={svc.id}
                 onClick={() => setActiveCard(svc.id)}
                 onMouseEnter={() => setHoveredCard(svc.id)}
-                className={`relative h-[340px] rounded-2xl p-8 cursor-pointer transition-all duration-500 overflow-hidden ${
+                className={`gsap-service-card relative h-[340px] rounded-2xl p-8 cursor-pointer transition-colors transition-shadow duration-500 overflow-hidden ${
                   isActive ? "bg-[#1252FF] shadow-xl" : "bg-[#F8F9FA]"
                 }`}
               >

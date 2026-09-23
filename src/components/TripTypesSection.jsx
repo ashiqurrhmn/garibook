@@ -6,24 +6,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TripTypesSection = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(
-        ".gsap-trip-up",
+        headerRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Cards Stagger Animation
+      gsap.fromTo(
+        gsap.utils.toArray(".gsap-trip-card"),
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.15,
+          stagger: 0.25,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 25%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -51,7 +70,7 @@ const TripTypesSection = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         {/* Header */}
-        <h2 className="gsap-trip-up text-[#222222] text-[32px] md:text-[40px] lg:text-[44px] mb-12 tracking-tight leading-[1.2]">
+        <h2 ref={headerRef} className="text-[#222222] text-[32px] md:text-[40px] lg:text-[44px] mb-12 tracking-tight leading-[1.2]">
           <span className="font-extrabold">More Than Miles —</span>
           <br />
           <span className="font-extrabold">We Bring People Together</span>
@@ -62,7 +81,7 @@ const TripTypesSection = () => {
           {tripTypes.map((trip, index) => (
             <div
               key={index}
-              className="gsap-trip-up relative w-full aspect-square rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="gsap-trip-card relative w-full aspect-square rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               <img
                 src={trip.image}

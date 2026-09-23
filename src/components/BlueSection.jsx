@@ -312,53 +312,53 @@ const BlueSection = () => {
       // Title Animation
       gsap.fromTo(
         titleRef.current,
-        { y: 100, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
+          duration: 2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 40%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
 
       // Stats Stagger Animation
       gsap.fromTo(
         statsRef.current,
-        { y: 80, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.2,
+          stagger: 0.25,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 60%",
+            start: "top 33%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
 
       // Car Drive-in Animation
       gsap.fromTo(
         carRef.current,
-        { x: -400, opacity: 0 },
+        { x: -300, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          duration: 1.8,
+          duration: 1.4,
           ease: "back.out(1)",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 70%",
+            start: "top 30%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
     }, sectionRef);
 

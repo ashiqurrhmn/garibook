@@ -7,24 +7,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BookingToArrival = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(
-        ".gsap-booking-up",
+        headerRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Grid Items Animation
+      gsap.fromTo(
+        gsap.utils.toArray(".gsap-booking-card"),
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.15,
+          stagger: 0.25,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 10%",
             toggleActions: "play reverse play reverse",
           },
-        },
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -37,7 +56,7 @@ const BookingToArrival = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         {/* Header Section */}
-        <div className="gsap-booking-up flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+        <div ref={headerRef} className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <h2 className="text-white text-[32px] md:text-[40px] lg:text-[44px] font-bold tracking-tight leading-[1.2] mb-6 md:mb-0">
             From Booking to Arrival It's
             <br className="hidden md:block" /> All in Your Hands
@@ -54,7 +73,7 @@ const BookingToArrival = () => {
         {/* Grid Layout */}
         <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {/* Top Row - Explore (Col Span 2 on both mobile and md) */}
-          <div className="gsap-booking-up col-span-2 rounded-[24px] overflow-hidden bg-[#1E293B]">
+          <div className="gsap-booking-card col-span-2 rounded-[24px] overflow-hidden bg-[#1E293B]">
             <img
               src="/Assets/explore.jpeg"
               alt="Explore Various Ride Services"
@@ -63,7 +82,7 @@ const BookingToArrival = () => {
           </div>
 
           {/* Top Row - Freedom (Col Span 1) */}
-          <div className="gsap-booking-up col-span-1 rounded-[24px] overflow-hidden bg-[#F8FAFC]">
+          <div className="gsap-booking-card col-span-1 rounded-[24px] overflow-hidden bg-[#F8FAFC]">
             <img
               src="/Assets/freedom.jpg"
               alt="Freedom"
@@ -72,7 +91,7 @@ const BookingToArrival = () => {
           </div>
 
           {/* Bottom Row - Safe Travel */}
-          <div className="gsap-booking-up col-span-1 rounded-[24px] overflow-hidden bg-[#F8FAFC]">
+          <div className="gsap-booking-card col-span-1 rounded-[24px] overflow-hidden bg-[#F8FAFC]">
             <img
               src="/Assets/safe_travel.svg"
               alt="Safe travel"
@@ -81,7 +100,7 @@ const BookingToArrival = () => {
           </div>
 
           {/* Bottom Row - Preferred Car */}
-          <div className="gsap-booking-up col-span-1 rounded-[24px] overflow-hidden bg-[#F8FAFC]">
+          <div className="gsap-booking-card col-span-1 rounded-[24px] overflow-hidden bg-[#F8FAFC]">
             <img
               src="/Assets/prefarred_car.jpg"
               alt="Choose Your Preferred Car"
@@ -90,7 +109,7 @@ const BookingToArrival = () => {
           </div>
 
           {/* Bottom Row - Smooth Experience */}
-          <div className="gsap-booking-up col-span-1 rounded-[24px] overflow-hidden bg-[#FDE047]">
+          <div className="gsap-booking-card col-span-1 rounded-[24px] overflow-hidden bg-[#FDE047]">
             <img
               src="/Assets/smooth.jpg"
               alt="Smooth Experience"
