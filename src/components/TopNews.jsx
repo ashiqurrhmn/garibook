@@ -97,14 +97,14 @@ const TopNews = () => {
               className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center text-black bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 active:scale-90 shadow-sm"
               aria-label="Previous News"
             >
-              <FiArrowLeft size={24} />
+              <FiArrowLeft size={24} strokeWidth={2.5} />
             </button>
             <button 
               onClick={scrollRight}
               className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center text-black bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 active:scale-90 shadow-sm"
               aria-label="Next News"
             >
-              <FiArrowRight size={24} />
+              <FiArrowRight size={24} strokeWidth={2.5} />
             </button>
           </div>
         </div>
@@ -146,12 +146,12 @@ const TopNews = () => {
               
               {/* Footer */}
               <div className="mt-auto flex items-center justify-between pt-2">
-                <div className="h-6 md:h-8 max-w-[120px] flex items-center">
+                <div className="h-6 md:h-12 max-w-[150px] flex items-center">
                   <img src={news.logo} alt="Publisher Logo" className="h-full object-contain object-left" />
                 </div>
                 <a 
                   href={news.link} 
-                  className="text-[#1252FF] font-medium text-[14px] md:text-[15px] flex items-center gap-1 hover:underline whitespace-nowrap"
+                  className="text-[#1252FF] font-semibold text-[14px] md:text-[15px] flex items-center gap-1 hover:underline whitespace-nowrap"
                 >
                   Read Article
                   <FiArrowRight size={16} />
