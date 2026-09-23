@@ -31,8 +31,8 @@ const FreedomSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#050505] pt-10 pb-24 lg:pt-16 lg:pb-32 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col">
+    <section ref={sectionRef} className="w-full bg-[#050505] pt-10 pb-24 lg:pt-12 lg:pb-12 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         
         {/* Header */}
         <h2 className="gsap-freedom-up text-white text-[32px] md:text-[42px] lg:text-[46px] font-bold mb-10 tracking-tight">
@@ -44,7 +44,7 @@ const FreedomSection = () => {
           <img 
             src="/Assets/garibook_freedom.webp" 
             alt="Freedom in Every Journey" 
-            className="w-full h-[250px] md:h-[450px] lg:h-[420px] object-cover"
+            className="w-full h-[120px] md:h-[200px] lg:h-[420px] object-cover"
           />
         </div>
 

@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import BlueSection from './components/BlueSection'
 import OurServices from './components/OurServices'
 import FreedomSection from './components/FreedomSection'
+import TripTypesSection from './components/TripTypesSection'
 import { MdChatBubble } from 'react-icons/md'
 import { FiArrowUp } from 'react-icons/fi'
 
@@ -104,6 +105,7 @@ function App() {
       <BlueSection />
       <OurServices />
       <FreedomSection />
+      <TripTypesSection />
       <ScrollToTop />
       <DraggableChat />
     </div>

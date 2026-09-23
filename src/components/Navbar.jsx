@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
 
         {/* Main Navbar */}
-        <nav className={`max-w-[1440px] mx-auto transition-all duration-300 px-4 sm:px-6 lg:px-12 ${isScrolled ? 'py-1' : 'pt-4 md:pt-6 lg:pt-12 pb-4'}`}>
+        <nav className={`max-w-[1440px] mx-auto transition-all duration-300 ${isScrolled ? 'py-1' : 'pt-4 md:pt-6 lg:pt-12 pb-4'}`}>
           <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
