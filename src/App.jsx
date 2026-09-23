@@ -10,6 +10,7 @@ import SmartDriver from './components/SmartDriver'
 import TopNews from './components/TopNews'
 import Passengers from './components/Passengers'
 import Destinations from './components/Destinations'
+import DownloadApp from './components/DownloadApp'
 import { MdChatBubble } from 'react-icons/md'
 import { FiArrowUp } from 'react-icons/fi'
 
@@ -116,6 +117,7 @@ function App() {
       <TopNews />
       <Passengers />
       <Destinations />
+      <DownloadApp />
       <ScrollToTop />
       <DraggableChat />
     </div>
