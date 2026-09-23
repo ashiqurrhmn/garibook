@@ -11,6 +11,7 @@ import TopNews from './components/TopNews'
 import Passengers from './components/Passengers'
 import Destinations from './components/Destinations'
 import DownloadApp from './components/DownloadApp'
+import Footer from './components/Footer'
 import { MdChatBubble } from 'react-icons/md'
 import { FiArrowUp } from 'react-icons/fi'
 
@@ -118,6 +119,7 @@ function App() {
       <Passengers />
       <Destinations />
       <DownloadApp />
+      <Footer />
       <ScrollToTop />
       <DraggableChat />
     </div>
