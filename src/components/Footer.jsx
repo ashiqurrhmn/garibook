@@ -63,7 +63,7 @@ const Footer = () => {
               Download Our<br />
               Garibook Mobile App
             </h2>
-            <button className="bg-[#1252FF] hover:bg-blue-700 text-white font-semibold text-[16px] py-[14px] px-[32px] rounded-[12px] flex items-center gap-3 transition-colors">
+            <button className="bg-[#1252FF] hover:bg-blue-700 text-white font-semibold text-[18px] md:text-[20px] py-[16px] md:py-[20px] lg:py-[25px] px-[24px] md:px-[30px] rounded-[16px] flex items-center justify-between w-[270px] md:w-[290px] transition-colors shadow-sm">
               Download App
               <FiArrowRight size={20} />
             </button>
@@ -107,7 +107,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section: Legal & Copyright */}
-        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 pb-8 pt-6 border-t border-gray-800/50">
+        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 pb-8 pt-6 border-t border-gray-800/90">
           
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
             <img src="/Assets/footer/Garibook_Logo.svg" alt="Garibook" className="h-8 md:h-10 object-contain" />

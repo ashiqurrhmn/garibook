@@ -1,12 +1,20 @@
-import React, { useEffect, useRef } from 'react';
-import { FiArrowUp } from 'react-icons/fi';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef } from "react";
+import { FiArrowUp } from "react-icons/fi";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CitySkyline = () => (
-  <svg width="1200" height="200" viewBox="0 0 1200 200" fill="none" stroke="currentColor" strokeWidth="1.8" className="shrink-0 h-full w-auto">
+  <svg
+    width="1200"
+    height="200"
+    viewBox="0 0 1200 200"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    className="shrink-0 h-full w-auto"
+  >
     {/* Ground line */}
     <line x1="0" y1="199" x2="1200" y2="199" />
 
@@ -302,52 +310,55 @@ const BlueSection = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Title Animation
-      gsap.fromTo(titleRef.current,
+      gsap.fromTo(
+        titleRef.current,
         { y: 100, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1.2,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play reverse play reverse',
-          }
-        }
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+        },
       );
 
       // Stats Stagger Animation
-      gsap.fromTo(statsRef.current,
+      gsap.fromTo(
+        statsRef.current,
         { y: 80, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
           stagger: 0.2,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
-            toggleActions: 'play reverse play reverse',
-          }
-        }
+            start: "top 60%",
+            toggleActions: "play reverse play reverse",
+          },
+        },
       );
 
       // Car Drive-in Animation
-      gsap.fromTo(carRef.current,
+      gsap.fromTo(
+        carRef.current,
         { x: -400, opacity: 0 },
         {
           x: 0,
           opacity: 1,
           duration: 1.8,
-          ease: 'back.out(1)',
+          ease: "back.out(1)",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 70%',
-            toggleActions: 'play reverse play reverse',
-          }
-        }
+            start: "top 70%",
+            toggleActions: "play reverse play reverse",
+          },
+        },
       );
     }, sectionRef);
 
@@ -355,15 +366,21 @@ const BlueSection = () => {
   }, []);
 
   const handleScrollUp = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#1252FF] relative overflow-hidden -mt-[1px]" style={{ minHeight: '650px' }}>
-      
+    <section
+      ref={sectionRef}
+      className="w-full bg-[#1252FF] relative overflow-hidden -mt-[1px]"
+      style={{ minHeight: "650px" }}
+    >
       {/* Title */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-16 md:pt-24 lg:pt-32">
-        <h2 ref={titleRef} className="text-white text-[28px] md:text-[42px] lg:text-[62px] font-bold leading-[1.25] max-w-[1200px]">
+        <h2
+          ref={titleRef}
+          className="text-white text-[28px] md:text-[42px] lg:text-[62px] font-bold leading-[1.25] max-w-[1200px]"
+        >
           From Everyday Rides to Meaningful Journeys
         </h2>
       </div>
@@ -371,21 +388,37 @@ const BlueSection = () => {
       {/* Stats */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 mt-12 md:mt-24 lg:mt-32">
         <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center lg:justify-end gap-8 md:gap-12 lg:gap-16 items-start md:items-end">
-          <div ref={el => statsRef.current[0] = el}>
-            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">300,000+</p>
-            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">Trip Requests</p>
+          <div ref={(el) => (statsRef.current[0] = el)}>
+            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">
+              300,000+
+            </p>
+            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">
+              Trip Requests
+            </p>
           </div>
-          <div ref={el => statsRef.current[1] = el}>
-            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">850,000+</p>
-            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">Total Customers</p>
+          <div ref={(el) => (statsRef.current[1] = el)}>
+            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">
+              850,000+
+            </p>
+            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">
+              Total Customers
+            </p>
           </div>
-          <div ref={el => statsRef.current[2] = el}>
-            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">35,000+</p>
-            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">Active Drivers</p>
+          <div ref={(el) => (statsRef.current[2] = el)}>
+            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">
+              35,000+
+            </p>
+            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">
+              Active Drivers
+            </p>
           </div>
-          <div ref={el => statsRef.current[3] = el}>
-            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">64</p>
-            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">District Covered</p>
+          <div ref={(el) => (statsRef.current[3] = el)}>
+            <p className="text-[#FDD300] text-[28px] md:text-[32px] lg:text-[42px] font-bold">
+              64
+            </p>
+            <p className="text-white text-[14px] md:text-[16px] lg:text-[18px] font-medium mt-1">
+              District Covered
+            </p>
           </div>
         </div>
       </div>
@@ -409,13 +442,12 @@ const BlueSection = () => {
       </div>
 
       {/* Car Image */}
-      <img 
+      <img
         ref={carRef}
-        src="/Assets/car_moving.gif" 
-        alt="Garibook Car" 
+        src="/Assets/car_moving.gif"
+        alt="Garibook Car"
         className="absolute bottom-0 left-4 md:left-10 lg:left-20 w-[100px] md:w-[120px] lg:w-[180px] z-20 object-contain drop-shadow-2xl"
       />
-
     </section>
   );
 };
