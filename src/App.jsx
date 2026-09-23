@@ -6,6 +6,7 @@ import OurServices from './components/OurServices'
 import FreedomSection from './components/FreedomSection'
 import TripTypesSection from './components/TripTypesSection'
 import BookingToArrival from './components/BookingToArrival'
+import SmartDriver from './components/SmartDriver'
 import { MdChatBubble } from 'react-icons/md'
 import { FiArrowUp } from 'react-icons/fi'
 
@@ -108,6 +109,7 @@ function App() {
       <FreedomSection />
       <TripTypesSection />
       <BookingToArrival />
+      <SmartDriver />
       <ScrollToTop />
       <DraggableChat />
     </div>

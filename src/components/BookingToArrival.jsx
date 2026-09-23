@@ -31,7 +31,7 @@ const BookingToArrival = () => {
 
   return (
     <section ref={sectionRef} className="w-full bg-[#050505] py-16 md:py-12 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 flex flex-col">
         
         {/* Header Section */}
         <div className="gsap-booking-up flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
