@@ -34,11 +34,12 @@ const FreedomSection = () => {
       // Image Animation
       gsap.fromTo(
         imageRef.current,
-        { y: 50, opacity: 0 },
+        { y: 50, opacity: 0, scale: 0.5 },
         {
           y: 0,
           opacity: 1,
-          duration: 2.5,
+          scale: 1,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
